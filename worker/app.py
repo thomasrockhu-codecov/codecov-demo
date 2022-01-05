@@ -1,6 +1,10 @@
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import SimpleSpanProcessor, ConsoleSpanExporter
+from opentelemetry.sdk.trace.export import (
+    BatchSpanProcessor,
+    ConsoleSpanExporter,
+    SimpleSpanProcessor,
+)
 from opentelemetry import trace
 
 from flask import Flask, request
@@ -21,12 +25,12 @@ generator, exporter = get_codecov_opentelemetry_instances(
         version_identifier=current_version,
         sample_rate=export_rate,
         filters={
-                    CoverageSpanFilter.regex_name_filter: None,
-                    CoverageSpanFilter.span_kind_filter: [
-                                    trace.SpanKind.SERVER,
-                                    trace.SpanKind.CONSUMER,
-                                ],
-                },
+            CoverageSpanFilter.regex_name_filter: None,
+            CoverageSpanFilter.span_kind_filter: [
+                trace.SpanKind.SERVER,
+                trace.SpanKind.CONSUMER,
+            ],
+        },
         code=f"{current_version}:{current_env}",
         untracked_export_rate=export_rate,
         environment=current_env,

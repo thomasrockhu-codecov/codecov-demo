@@ -2,9 +2,9 @@ name: Python package
 
 on:
   push:
-    branches: [ master, development ]
+    branches: [ main ]
   pull_request:
-    branches: [ master, development ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
         python-version: 3.9
     - name: Install requirements
       run: |
-        pip install requirements.txt
+        pip install -r requirements.txt
     - name: Run tests and collect coverage
       run: |
         pytest api/test.py --cov --cov-reporter xml
