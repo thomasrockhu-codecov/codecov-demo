@@ -24,7 +24,7 @@ from utils.time import format_time
 provider = TracerProvider()
 trace.set_tracer_provider(provider)
 
-current_version = os.getenv("CURRENT_VERSION", "0.0.3")
+current_version = os.getenv("CURRENT_VERSION", "0.0.4")
 current_env = "production"
 export_rate = 100
 untracked_export_rate = 0
