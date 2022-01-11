@@ -21,16 +21,12 @@ from codecovopentelem import (
 )
 from utils.time import format_time
 
-trace.set_tracer_provider(TracerProvider())
-trace.get_tracer_provider().add_span_processor(
-    SimpleSpanProcessor(ConsoleSpanExporter())
-)
-
 provider = TracerProvider()
+trace.set_tracer_provider(provider)
 
-current_version = os.getenv("CURRENT_VERSION", "0.0.1")
+current_version = os.getenv("CURRENT_VERSION", "0.0.2")
 current_env = "production"
-export_rate = 10
+export_rate = 100
 untracked_export_rate = 0
 
 generator, exporter = get_codecov_opentelemetry_instances(
@@ -50,6 +46,7 @@ generator, exporter = get_codecov_opentelemetry_instances(
 )
 provider.add_span_processor(generator)
 provider.add_span_processor(BatchSpanProcessor(exporter))
+
 
 app = Flask(
     __name__,
