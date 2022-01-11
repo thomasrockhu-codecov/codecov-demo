@@ -5,7 +5,20 @@ from flask import (
     render_template,
 )
 
+from opentelemetry.instrumentation.flask import FlaskInstrumentor
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import (
+    ConsoleSpanExporter,
+    SimpleSpanProcessor,
+)
+from opentelemetry import trace
+
 from utils.time import format_time
+
+trace.set_tracer_provider(TracerProvider())
+trace.get_tracer_provider().add_span_processor(
+    SimpleSpanProcessor(ConsoleSpanExporter())
+)
 
 app = Flask(
     __name__,
@@ -13,6 +26,7 @@ app = Flask(
     static_folder='',
     template_folder='templates',
 )
+FlaskInstrumentor().instrument_app(app)
 
 @app.route('/')
 def index():
