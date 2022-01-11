@@ -30,7 +30,8 @@ provider = TracerProvider()
 
 current_version = os.getenv("CURRENT_VERSION", "0.0.1")
 current_env = "production"
-export_rate = 0
+export_rate = 10
+untracked_export_rate = 0
 
 generator, exporter = get_codecov_opentelemetry_instances(
     repository_token=os.getenv("CODECOV_OPENTELEMETRY_TOKEN"),
@@ -44,7 +45,7 @@ generator, exporter = get_codecov_opentelemetry_instances(
         ],
     },
     code=f"{current_version}:{current_env}",
-    untracked_export_rate=export_rate,
+    untracked_export_rate=untracked_export_rate,
     environment=current_env,
 )
 provider.add_span_processor(generator)
