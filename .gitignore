@@ -1,0 +1,6 @@
+__pycache__
+codecov
+coverage.xml
+.coverage
+node_modules/
+.pytest_cache/
