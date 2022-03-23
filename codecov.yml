@@ -3,5 +3,3 @@ coverage:
     slack:
       default:
         url: "https://hooks.slack.com/services/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"
-        target: 80%
-
