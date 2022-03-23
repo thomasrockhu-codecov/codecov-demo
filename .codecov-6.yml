@@ -1,2 +1,3 @@
 flag_management:
-  carryforward: true
+  default_rules:
+    carryforward: true
