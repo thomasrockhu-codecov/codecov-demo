@@ -1,39 +1,13 @@
 version: 2.1
+setup: true
 
 orbs:
-  codecov: codecov/codecov@3.2.2
-
-jobs:
-  test-api:
-    docker:
-      - image: cimg/python:3.10.2
-    steps:
-      - checkout
-      - run:
-          name: Install requirements
-          command: pip install -r api/requirements.txt
-      - run:
-          name: Run tests and collect coverage
-          command: pytest --cov --cov-report xml .
-      - codecov/upload:
-          flags: backend
-  test-frontend:
-    docker:
-      - image: cimg/node:17.6.0
-    steps:
-      - checkout
-      - run:
-          name: Install requirements
-          command: cd web && npm install
-      - run:
-          name: Run tests and collect coverage
-          command: cd web && npm run test
-      - codecov/upload:
-          flags: frontend
+  path-filtering: circleci/path-filtering@0.1.1
 
 workflows:
-  version: 2.1
-  build-test:
+  always-run:
     jobs:
-      - test-api
-      - test-frontend
+      - path-filtering/filter:
+          mapping: |
+            api/.* test-api-job true
+            web/.* test-frontend-job true
