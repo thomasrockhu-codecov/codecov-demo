@@ -1,0 +1,13 @@
+coverage:
+  status:
+    default_rules:
+      flag_coverage_not_uploaded_behavior: "exclude"
+    project:
+      frontend:
+        target: 100%
+        flags:
+          - frontend
+    patch:
+      frontend:
+        flags:
+          - frontend

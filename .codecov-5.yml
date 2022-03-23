@@ -1,8 +1,13 @@
 coverage:
-    status:
-        project:
-            default:
-                if_not_found: "success"
-        patch:
-            default:
-                if_not_found: "success"
+  status:
+    default_rules:
+      flag_coverage_not_uploaded_behavior: "exclude"
+    project:
+      frontend:
+        target: 100%
+        flags:
+          - frontend
+    patch:
+      frontend:
+        flags:
+          - frontend
