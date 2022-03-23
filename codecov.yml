@@ -1,0 +1,14 @@
+flag_management:
+  default_rules:
+    statuses:
+      - type: project
+        target: auto
+      - type: patch
+        target: 100%
+  individual_flags:
+    - name: frontend
+      paths:
+        - web
+    - name: backend
+      paths:
+        - api
