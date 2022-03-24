@@ -1,0 +1,7 @@
+coverage:
+  notify:
+    slack:
+      default:
+        url: ""
+        # threshold: 1%
+        # after_n_builds: 2
