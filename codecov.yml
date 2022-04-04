@@ -9,9 +9,7 @@ coverage:
       flag_coverage_not_uploaded_behavior: "pass"
     project:
       default:
-        flags:
-          - all
+        if_not_found: "success"
     patch:
       default:
-        flags:
-          - all
+        if_not_found: "success"
