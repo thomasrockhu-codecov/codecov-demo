@@ -1,0 +1,15 @@
+codecov:
+  require_ci_to_pass: false
+  notify:
+    wait_for_ci: false
+
+coverage:
+  status:
+    default_rules:
+      flag_coverage_not_uploaded_behavior: "pass"
+    project:
+      default:
+        if_not_found: "success"
+    patch:
+      default:
+        if_not_found: "success"
